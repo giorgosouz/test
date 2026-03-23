@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Copilot</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div>
+          <p class="eyebrow">Free LLM • Real-time interview help</p>
+          <h1>Interview Copilot</h1>
+          <p class="subtitle">
+            Listen to interview questions, transcribe in real-time, and generate
+            structured answers with a free LLM.
+          </p>
+        </div>
+        <div class="status" id="status">Idle</div>
+      </header>
+
+      <section class="panel">
+        <h2>Connection</h2>
+        <div class="grid">
+          <label>
+            OpenAI-compatible endpoint
+            <input
+              id="endpoint"
+              type="url"
+              value="https://openrouter.ai/api/v1/chat/completions"
+            />
+          </label>
+          <label>
+            Model (free tiers on OpenRouter)
+            <input
+              id="model"
+              type="text"
+              value="meta-llama/llama-3.1-8b-instruct:free"
+            />
+          </label>
+          <label>
+            API key
+            <input id="apiKey" type="password" placeholder="sk-..." />
+            <small class="helper"
+              >Use a free-tier key from OpenRouter or another compatible
+              provider.</small
+            >
+          </label>
+          <label>
+            Auto-answer after silence (seconds)
+            <input id="silence" type="number" value="2" min="1" max="10" />
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Live Interview</h2>
+        <div class="controls">
+          <button id="startBtn">Start listening</button>
+          <button id="stopBtn" disabled>Stop</button>
+          <button id="answerBtn" disabled>Generate answer</button>
+          <button id="clearBtn" class="secondary">Clear</button>
+          <label class="toggle">
+            <input id="autoAnswer" type="checkbox" checked />
+            <span>Auto-answer</span>
+          </label>
+        </div>
+        <div class="columns">
+          <div>
+            <h3>Transcript</h3>
+            <div id="transcript" class="box">Waiting for audio...</div>
+            <p class="hint">
+              Tip: use headphones to avoid feedback loops. You can also paste a
+              question below.
+            </p>
+            <textarea
+              id="manualQuestion"
+              rows="4"
+              placeholder="Paste or type a question here and click Generate answer"
+            ></textarea>
+          </div>
+          <div>
+            <h3>Suggested response</h3>
+            <div id="answer" class="box">No response yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Answer style</h2>
+        <div class="grid">
+          <label>
+            Role
+            <input id="role" type="text" value="Senior Software Engineer" />
+          </label>
+          <label>
+            Tone
+            <input id="tone" type="text" value="Confident, concise" />
+          </label>
+          <label>
+            Format
+            <input id="format" type="text" value="Bullet points" />
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
